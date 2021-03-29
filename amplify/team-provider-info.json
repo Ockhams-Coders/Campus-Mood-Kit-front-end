@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-campusmoodkitamplify-dev-163113-authRole",
+      "UnauthRoleArn": "arn:aws:iam::537786454283:role/amplify-campusmoodkitamplify-dev-163113-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::537786454283:role/amplify-campusmoodkitamplify-dev-163113-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-campusmoodkitamplify-dev-163113-deployment",
+      "UnauthRoleName": "amplify-campusmoodkitamplify-dev-163113-unauthRole",
+      "StackName": "amplify-campusmoodkitamplify-dev-163113",
+      "StackId": "arn:aws:cloudformation:us-east-1:537786454283:stack/amplify-campusmoodkitamplify-dev-163113/60588af0-8f3b-11eb-aebe-0af47575f89b",
+      "AmplifyAppId": "d3kvyu5og38zwx"
+    },
+    "categories": {
+      "auth": {
+        "campusmoodkitamplify408a8040": {}
+      }
+    }
+  }
+}

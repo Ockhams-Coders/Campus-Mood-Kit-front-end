@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "campusmoodkitamplify408a8040": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
