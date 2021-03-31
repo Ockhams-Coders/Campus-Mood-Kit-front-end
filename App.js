@@ -11,16 +11,14 @@ import Amplify, { Auth } from "aws-amplify";
 import config from "./aws-exports";
 Amplify.configure(config);
 
-import { withAuthenticator } from "aws-amplify-react-native";
-
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-const LoginTabs = createBottomTabNavigator();
 
 const LoginStack = createStackNavigator();
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
+import Main from "./components/Main";
 
 let globalUser;
 
@@ -369,29 +367,7 @@ const App = () => {
     );
   }
 
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-      <TouchableOpacity
-        onPress={() => {
-          try {
-            Auth.signOut();
-            setLoggedIn(false);
-          } catch (err) {
-            console.log(err);
-          }
-        }}
-      >
-        <Text>Logout</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  return <Main />;
 };
 
 export default App;

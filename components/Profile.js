@@ -1,0 +1,80 @@
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+import { Auth } from "aws-amplify";
+
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "#D7C1F6",
+  },
+  profile: {
+    height: 100,
+    width: 100,
+    backgroundColor: "#fff",
+    borderRadius: 999,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 20,
+  },
+  nameText: {
+    fontSize: 25,
+  },
+});
+
+const Profile = () => {
+  const [user, setUser] = useState({ attributes: { name: "" } });
+
+  const hourOfDay = new Date().getHours();
+  const greeting =
+    hourOfDay < 3
+      ? "Night"
+      : hourOfDay < 12
+      ? "Momrning"
+      : hourOfDay < 17
+      ? "Afternoon"
+      : hourOfDay < 23
+      ? "Evening"
+      : "Night";
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setUser(await Auth.currentUserInfo());
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
+  return (
+    <SafeAreaView style={styles.center}>
+      <View style={{ width: "80%", margin: 10 }}>
+        <TouchableOpacity style={{ alignSelf: "flex-end" }}>
+          <Text>Edit Profile</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.profile}>
+        <FontAwesome
+          name="user-circle"
+          color="#000"
+          size={styles.profile.height * 0.9}
+        />
+      </View>
+      <Text style={styles.nameText}>
+        Good {greeting} {user.attributes.name}
+      </Text>
+    </SafeAreaView>
+  );
+};
+
+export default Profile;
