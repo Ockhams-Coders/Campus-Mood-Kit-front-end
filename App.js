@@ -367,7 +367,7 @@ const App = () => {
     );
   }
 
-  return <Main />;
+  return <Main setLoggedIn={setLoggedIn} />;
 };
 
 export default App;

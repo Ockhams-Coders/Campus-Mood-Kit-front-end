@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Profile = () => {
+const Profile = ({ route }) => {
   const [user, setUser] = useState({ attributes: { name: "" } });
 
   const hourOfDay = new Date().getHours();
@@ -73,6 +73,19 @@ const Profile = () => {
       <Text style={styles.nameText}>
         Good {greeting} {user.attributes.name}
       </Text>
+      <TouchableOpacity
+        style={{}}
+        onPress={async () => {
+          try {
+            await Auth.signOut();
+            route.params.setLoggedIn(false);
+          } catch (err) {
+            console.log(err);
+          }
+        }}
+      >
+        <Text>Logout</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

@@ -17,7 +17,9 @@ import SOS from "./SOS";
 import Saved from "./Saved";
 import Profile from "./Profile";
 
-const Main = () => {
+const Main = ({ setLoggedIn }) => {
+  console.log("Test", setLoggedIn);
+
   return (
     <NavigationContainer>
       <Tabs.Navigator>
@@ -78,6 +80,7 @@ const Main = () => {
               />
             ),
           }}
+          initialParams={{ setLoggedIn }}
         />
       </Tabs.Navigator>
     </NavigationContainer>
