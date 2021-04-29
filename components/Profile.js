@@ -9,7 +9,7 @@ import {
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import { Auth } from "aws-amplify";
-
+//align items and set background
 const styles = StyleSheet.create({
   center: {
     flex: 1,
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     backgroundColor: "#D7C1F6",
   },
+  //style for profile image 
   profile: {
     height: 100,
     width: 100,
@@ -26,11 +27,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 20,
   },
+  //name text options
   nameText: {
     fontSize: 25,
   },
 });
-
+//greeting user determination function
 const Profile = ({ route }) => {
   const [user, setUser] = useState({ attributes: { name: "" } });
 
@@ -39,7 +41,7 @@ const Profile = ({ route }) => {
     hourOfDay < 3
       ? "Night"
       : hourOfDay < 12
-      ? "Momrning"
+      ? "Morning"
       : hourOfDay < 17
       ? "Afternoon"
       : hourOfDay < 23
