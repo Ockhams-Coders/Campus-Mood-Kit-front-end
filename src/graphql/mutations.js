@@ -9,11 +9,6 @@ export const createClinic = /* GraphQL */ `
     createClinic(input: $input, condition: $condition) {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -21,13 +16,12 @@ export const createClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -39,11 +33,6 @@ export const updateClinic = /* GraphQL */ `
     updateClinic(input: $input, condition: $condition) {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -51,13 +40,12 @@ export const updateClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -69,11 +57,6 @@ export const deleteClinic = /* GraphQL */ `
     deleteClinic(input: $input, condition: $condition) {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -81,13 +64,12 @@ export const deleteClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -102,22 +84,16 @@ export const createReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -132,22 +108,16 @@ export const updateReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -162,22 +132,16 @@ export const deleteReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;

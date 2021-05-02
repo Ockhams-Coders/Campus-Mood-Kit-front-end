@@ -6,11 +6,6 @@ export const getClinic = /* GraphQL */ `
     getClinic(id: $id) {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -18,13 +13,12 @@ export const getClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -38,17 +32,12 @@ export const listClinics = /* GraphQL */ `
       items {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -62,22 +51,16 @@ export const getReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -94,14 +77,13 @@ export const listReviews = /* GraphQL */ `
         clinic {
           id
           name
+          likes
           createdAt
           updatedAt
-          owner
         }
         comment
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

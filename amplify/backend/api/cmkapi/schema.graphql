@@ -1,17 +1,11 @@
-type Clinic @model @auth(rules: [{ allow: owner, queries: null }]) {
+type Clinic @model {
   id: ID!
   name: String!
-  address: Address
   reviews: [Review] @connection
+  likes: [String]
 }
 
-type Address {
-  street: String!
-  zip: Int!
-  city: String!
-}
-
-type Review @model @auth(rules: [{ allow: owner, queries: null }]) {
+type Review @model {
   id: ID!
   rating: Float!
   clinic: Clinic! @connection

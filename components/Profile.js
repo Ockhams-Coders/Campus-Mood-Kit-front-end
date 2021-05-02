@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     backgroundColor: "#D7C1F6",
   },
-  //style for profile image 
+  //style for profile image
   profile: {
     height: 100,
     width: 100,
