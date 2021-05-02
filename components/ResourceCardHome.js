@@ -124,7 +124,6 @@ const ResourceCardHome = (props) => {
     })();
   }, []);
 
-  console.log(props.item);
 
   return (
     <View style={styles.container}>

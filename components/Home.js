@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, Text, StyleSheet } from "react-native";
+import { ScrollView, View, Text, StyleSheet, FlatList } from "react-native";
 import { listClinics } from "../src/graphql/queries";
 
 import ResourceCardHome from "./ResourceCardHome.js";
@@ -13,13 +13,23 @@ const styles = StyleSheet.create({
     paddingTop: "15%",
     backgroundColor: "#99DDF9",
     width: "100%",
-    height: "100%",
+    maxHeight: 600,
+
+  },
+  centerScroll: {
+    flexGrow: 1,
+    alignItems: "center",
+    paddingTop: "15%",
+    backgroundColor: "#99DDF9",
+    width: "100%",
+    height: "150%"
   },
 });
 
-const Home = () => {
-  const [clinics, setClinics] = useState([]);
 
+const Home = () => {
+  
+  const [clinics, setClinics] = useState([]);
   useEffect(() => {
     (async () => {
       try {
@@ -32,11 +42,14 @@ const Home = () => {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={styles.center}>
+
+    <ScrollView contentContainerStyle={styles.centerScroll} bounces={true} >
+      <View style={styles.center}>
       {clinics.map((item, idx) => {
         return <ResourceCardHome key={idx} item={item}></ResourceCardHome>;
         // return <Text key={idx}>{item.name}</Text>;
       })}
+      </View>
     </ScrollView>
   );
 };
