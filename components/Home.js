@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import ResourceCard from "./ResourceCard";
+
+import ResourceCardHome from './ResourceCardHome.js';
+
 
 const styles = StyleSheet.create({
   center: {
@@ -16,8 +18,9 @@ const styles = StyleSheet.create({
 const Home = () => {
   return (
     <View style={styles.center}>
-      <ResourceCard title="Resource Title"/>
-      <ResourceCard/>
+
+      <ResourceCardHome title={"My Test"}></ResourceCardHome>
+
     </View>
   );
 };
