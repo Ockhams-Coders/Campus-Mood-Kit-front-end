@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button } from 'react-native';
-import Chart from './Chart'
+import { Button } from "react-native";
+import Chart from "./Chart";
 import {
   View,
   Text,
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 20,
-    
   },
   //name text options
   nameText: {
@@ -77,8 +76,6 @@ const Profile = ({ route }) => {
           graphqlOperation(getDiagnosis, { id: userSync.username })
         );
 
-        
-        
         if (result.data.getDiagnosis == null) {
           let input = {
             id: userSync.username,
@@ -98,6 +95,7 @@ const Profile = ({ route }) => {
           setDisgnosis(result.data.getDiagnosis);
         }
       } catch (err) {
+        console.log("Profile err 1");
         console.log(err);
       }
     })();
@@ -105,11 +103,9 @@ const Profile = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.center}>
-      <View style={{ width: "80%", margin: 10, flexDirection: "row"}}>
-      <Text style={{flex:1}}>Edit Profile</Text>
-        <TouchableOpacity style={{  }}>
-        
-          
+      <View style={{ width: "80%", margin: 10, flexDirection: "row" }}>
+        <Text style={{ flex: 1 }}>Edit Profile</Text>
+        <TouchableOpacity style={{}}>
           <TouchableOpacity
             style={{}}
             onPress={async () => {
@@ -120,9 +116,9 @@ const Profile = ({ route }) => {
                 console.log(err);
               }
             }}
-      >
-        <Text>Logout</Text>
-      </TouchableOpacity>
+          >
+            <Text>Logout</Text>
+          </TouchableOpacity>
         </TouchableOpacity>
       </View>
       <View style={styles.profile}>
@@ -131,67 +127,92 @@ const Profile = ({ route }) => {
           color="#000"
           size={styles.profile.height * 0.9}
         />
-        
       </View>
-      
+
       <Text style={styles.nameText}>
         Good {greeting} {user.attributes.name}
       </Text>
-      
-      
-      <View style={{alignItems: "center", display: "flex", justifyContent:"center", flexDirection:"column"}}>
-      <Chart/>
-      {//disgnosis && (
-        //<View style={{ marginTop: 20 }}>
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#f1f2f3",
+          borderRadius: 10,
+          borderColor: "#513873",
+          shadowColor: "#513873",
+          shadowOffset: {
+            width: 2,
+            height: 2,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 2,
+          padding: 5,
+        }}
+        onPress={async () => {
+          try {
+            await Auth.signOut();
+            route.params.setLoggedIn(false);
+          } catch (err) {
+            console.log("Profile err 2");
+            console.log(err);
+          }
+        }}
+      >
+        <Text style={{ color: "#4747ff", fontSize: 18 }}>Retake Quiz</Text>
+      </TouchableOpacity>
+
+      <View
+        style={{
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Chart />
+        {
+          //disgnosis && (
+          //<View style={{ marginTop: 20 }}>
           //<Text>Depression: {degree[disgnosis.depression]}</Text>
           //<Text>Suicidal: {degree[disgnosis.suicidal]}</Text>
           //<Text>Anxiety: {degree[disgnosis.anxiety]}</Text>
           //<Text>OCD: {degree[disgnosis.OCD]}</Text>
           //<Text>Eating disorder: {degree[disgnosis.eating]}</Text>
           //<Text>ADHD: {degree[disgnosis.ADHD]}</Text>
-        //</View>
-      }
-      <TouchableOpacity
-        style={{backgroundColor:"#f1f2f3", 
-        borderRadius:10, 
-        borderColor: "#513873",
-        shadowColor: "#513873",
-        shadowOffset: {
-          width: 2,
-          height: 2,    
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        padding: 5,
-        
+          //</View>
+        }
+        <TouchableOpacity
+          style={{}}
+          onPress={async () => {
+            try {
+              let user = (await Auth.currentUserInfo()).username;
 
-      }}
-        onPress={async () => {
-          try {
-            let user = (await Auth.currentUserInfo()).username;
+              await API.graphql(
+                graphqlOperation(deleteResults, {
+                  input: { id: user },
+                })
+              );
 
-            await API.graphql(
-              graphqlOperation(deleteResults, {
-                input: { id: user },
-              })
-            );
-
-            route.params.setSetupAccount(true);
-          } catch (err) {
-            console.log(err);
-          }
+              route.params.setSetupAccount(true);
+            } catch (err) {
+              console.log("Profile err 3");
+              console.log(err);
+            }
+          }}
+        >
+          <Text style={{ paddingBottom: "5%" }}>Retake Quiz</Text>
+        </TouchableOpacity>
+      </View>
+      <Text
+        style={{
+          alignSelf: "flex-start",
+          paddingLeft: "10%",
+          paddingTop: "8%",
+          fontSize: 20,
         }}
       >
-        <Text style={{color:"#4747ff", fontSize:18
-          
-          }} >
-          Retake Quiz
-        </Text>
-      </TouchableOpacity>
-      </View>
-      <Text style={{alignSelf: "flex-start", paddingLeft:"10%", paddingTop: "8%", fontSize:20}}>Your Recommended Resources...</Text>
+        Your Recommended Resources...
+      </Text>
     </SafeAreaView>
-  
   );
 };
 

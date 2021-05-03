@@ -33,6 +33,7 @@ const Home = () => {
         const data = await API.graphql(graphqlOperation(listClinics));
         setClinics(data.data.listClinics.items);
       } catch (err) {
+        console.log("Home error");
         console.log(err);
       }
     })();

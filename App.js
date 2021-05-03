@@ -103,6 +103,7 @@ const SignIn = ({ navigation, route }) => {
                 await Auth.signIn(email, password);
                 route.params.setLoggedIn(true);
               } catch (err) {
+                console.log("App err");
                 console.log(err);
               }
               setLoggedIn(true);
@@ -196,6 +197,7 @@ const Create1 = ({ navigation, route }) => {
 
       navigation.navigate("Create2");
     } catch (err) {
+      console.log("App err 2");
       console.log({ err });
     }
   };
@@ -276,6 +278,7 @@ const Create2 = ({ navigation, route }) => {
       await Auth.confirmSignUp(globalUser, code);
       navigation.navigate("SignIn");
     } catch (err) {
+      console.log("App err 3");
       console.log({ err });
     }
   };

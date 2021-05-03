@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Modal,
+} from "react-native";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 
 import { updateClinic } from "../src/graphql/mutations";
-import { getClinic } from "../src/graphql/queries";
+import { getClinic, listReviews } from "../src/graphql/queries";
 
 import { shouldUseActivityState } from "react-native-screens";
 import { Platform } from "react-native";
-import { Button } from "native-base";
+import { Button, Left } from "native-base";
 
 const styles = StyleSheet.create({
   container: {
@@ -56,7 +63,7 @@ const styles = StyleSheet.create({
   font: {
     fontSize: 20,
     flex: 1,
-    paddingTop: 4
+    paddingTop: 4,
   },
   titleBox1: {
     flex: 3,
@@ -68,6 +75,15 @@ const styles = StyleSheet.create({
 const ResourceCardHome = (props) => {
   const [liked, setLiked] = useState(false);
   const [button, setButton] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [reviews, setReviews] = useState([]);
+
+  const fetchReviews = async () => {
+    setReviews(
+      (await API.graphql(graphqlOperation(listReviews, { id: props.item.id })))
+        .data.listReviews || []
+    );
+  };
 
   const handlePress = async () => {
     try {
@@ -107,6 +123,7 @@ const ResourceCardHome = (props) => {
       );
       setLiked(!liked);
     } catch (err) {
+      console.log("Resources err 1");
       console.log(err);
     }
   };
@@ -115,12 +132,13 @@ const ResourceCardHome = (props) => {
     (async () => {
       try {
         let user = (await Auth.currentUserInfo()).username;
-        let likedAWS = props.item.likes.reduce((prev, cur) => {
+        let likedAWS = (props.item.likes || []).reduce((prev, cur) => {
           return cur == user || prev;
         }, false);
 
         setLiked(likedAWS);
       } catch (err) {
+        console.log("Resources err 2");
         console.log(err);
       }
     })();
@@ -128,10 +146,69 @@ const ResourceCardHome = (props) => {
 
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View
+          style={{
+            width: "100%",
+            height: "100%",
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <View
+            style={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              backgroundColor: "#555",
+              opacity: 0.5,
+            }}
+          ></View>
+          <View
+            style={{
+              width: "85%",
+              height: "60%",
+              backgroundColor: "#fff",
+              opacity: 1,
+              padding: 15,
+              alignItems: "center",
+              justifyContent: "space-around",
+            }}
+          >
+            <Text>{props.item.name}</Text>
+            <Text>{props.item.rating}</Text>
+            <Text>{props.item.description}</Text>
+            {reviews.length > 0 && (
+              <View>
+                {reviews.map((review, idx) => {
+                  <View key={idx}>
+                    <Text>review.rating</Text>
+                    <Text>review.comment</Text>
+                  </View>;
+                })}
+              </View>
+            )}
+            <TouchableOpacity onPress={() => setModalVisible(false)} style={{}}>
+              <Text>Hide Card</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <View className="card-wrapper" style={styles.wrapper}>
         <View className="header-section" style={styles.title}>
           <View className="block1" style={styles.titleBox1}>
-            <Text style={styles.font} numberOfLines={1}>{props.item.name}</Text>
+            <Text style={styles.font} numberOfLines={1}>
+              {props.item.name}
+            </Text>
             <Text>{props.item.rating}</Text>
           </View>
           <View className="block2">
@@ -151,9 +228,14 @@ const ResourceCardHome = (props) => {
           className="description-of-services-section"
           style={styles.services}
         >
-          <Text numberOfLines={4} style={{ padding: 5, flex: 1 }}>{props.item.description}</Text>
+          <Text numberOfLines={4} style={{ padding: 5, flex: 1 }}>
+            {props.item.description}
+          </Text>
         </View>
-        <TouchableOpacity  style={{ padding: 5 }}>
+        <TouchableOpacity
+          style={{ padding: 5 }}
+          onPress={() => setModalVisible(true)}
+        >
           <Text>Show More</Text>
         </TouchableOpacity>
       </View>
