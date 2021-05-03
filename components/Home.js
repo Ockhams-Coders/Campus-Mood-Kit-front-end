@@ -26,8 +26,7 @@ const styles = StyleSheet.create({
     height: "260%",
     flexDirection: "column",
     alignItems: "flex-start",
-    zIndex: 1, 
-    elevation: 1,
+
     
   },
 });
@@ -48,15 +47,15 @@ const Home = () => {
   }, []);
 
   return (
-  <ScrollView style={{zIndex: 0, elevation: 0, backgroundColor:"#99DDF9"}} showsHorizontalScrollIndicator={true}>
+  <ScrollView style={{ backgroundColor:"#99DDF9"}} showsHorizontalScrollIndicator={true} bounces={true}>
 
       <View style={{zIndex: 2, elevation: 2, position: "absolute" }}>
       <Navbar screen="Home"/>
       </View>
-      <View style={{height:60, width:"100%", zIndex: 1, elevation: 1}}>
+      <View style={{height:60, width:"100%"}}>
 
       </View>
-    <ScrollView contentContainerStyle={styles.centerScroll} bounces={false}>
+    <ScrollView contentContainerStyle={styles.centerScroll} >
       
       
   

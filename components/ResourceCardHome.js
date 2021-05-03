@@ -181,24 +181,41 @@ const ResourceCardHome = (props) => {
               opacity: 1,
               padding: 15,
               alignItems: "center",
-              justifyContent: "space-around",
+              display: "flex",
+              borderRadius: 50
             }}
           >
-            <Text>{props.item.name}</Text>
-            <Text>{props.item.rating}</Text>
-            <Text>{props.item.description}</Text>
+            <Text style={{
+              fontSize: 20,
+              fontWeight: '500',
+              flex: 0
+
+            }}>{props.item.name}</Text>
+            <Text
+            style={{
+              flex: 2,
+              alignSelf: "flex-start",
+              paddingLeft: 40
+            }}> Rating {props.item.rating}</Text>
+            <Text
+            style={{
+              flex: 10,
+              width: "80%"
+
+            }}>{props.item.description}</Text>
             {reviews.length > 0 && (
               <View>
                 {reviews.map((review, idx) => {
                   <View key={idx}>
-                    <Text>review.rating</Text>
-                    <Text>review.comment</Text>
+                    <Text>{revie.rating}</Text>
+                    <Text>{review.comment}</Text>
                   </View>;
                 })}
               </View>
             )}
             <TouchableOpacity onPress={() => setModalVisible(false)} style={{}}>
-              <Text>Hide Card</Text>
+              <Text
+              >Hide Card</Text>
             </TouchableOpacity>
           </View>
         </View>

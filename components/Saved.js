@@ -25,8 +25,7 @@ const styles = StyleSheet.create({
     height: "100%",
     flexDirection: "column",
     alignItems: "flex-start",
-    zIndex: 1, 
-    elevation: 1,
+
   },
 });
 
@@ -58,15 +57,15 @@ const Saved = () => {
   }, []);
 
   return (
-    <ScrollView style={{zIndex: 0, elevation: 0, backgroundColor:"#F7C78E"}} showsHorizontalScrollIndicator={true}>
+    <ScrollView style={{backgroundColor:"#F7C78E"}} showsHorizontalScrollIndicator={true} bounces={true}>
 
       <View style={{zIndex: 2, elevation: 2, position: "absolute" }}>
       <Navbar screen="Your Saved Resources"/>
       </View>
-      <View style={{height:60, width:"100%", zIndex: 1, elevation: 1}}>
+      <View style={{height:60, width:"100%", }}>
 
       </View>
-    <ScrollView contentContainerStyle={styles.centerScroll} bounces={true}>
+    <ScrollView contentContainerStyle={styles.centerScroll} >
       <View style={styles.center}>
         {clinics
           .filter((item) => {
