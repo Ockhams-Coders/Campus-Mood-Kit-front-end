@@ -114,6 +114,7 @@ export const getResults = /* GraphQL */ `
       q9
       q10
       q11
+      q12
       q13
       q14
       q15
@@ -146,6 +147,7 @@ export const listResultss = /* GraphQL */ `
         q9
         q10
         q11
+        q12
         q13
         q14
         q15

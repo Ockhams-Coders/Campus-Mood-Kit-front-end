@@ -29,6 +29,7 @@ type Results @model {
   q9: Int
   q10: Int
   q11: Int
+  q12: Int
   q13: Int
   q14: Int
   q15: Int
