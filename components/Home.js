@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#99DDF9",
     width: "100%",
     maxHeight: 600,
-
   },
   centerScroll: {
     flexGrow: 1,
@@ -22,13 +21,11 @@ const styles = StyleSheet.create({
     paddingTop: "15%",
     backgroundColor: "#99DDF9",
     width: "100%",
-    height: "150%"
+    height: "150%",
   },
 });
 
-
 const Home = () => {
-  
   const [clinics, setClinics] = useState([]);
   useEffect(() => {
     (async () => {
@@ -42,13 +39,11 @@ const Home = () => {
   }, []);
 
   return (
-
-    <ScrollView contentContainerStyle={styles.centerScroll} bounces={true} >
+    <ScrollView contentContainerStyle={styles.centerScroll} bounces={true}>
       <View style={styles.center}>
-      {clinics.map((item, idx) => {
-        return <ResourceCardHome key={idx} item={item}></ResourceCardHome>;
-        // return <Text key={idx}>{item.name}</Text>;
-      })}
+        {clinics.map((item, idx) => {
+          return <ResourceCardHome key={idx} item={item}></ResourceCardHome>;
+        })}
       </View>
     </ScrollView>
   );
