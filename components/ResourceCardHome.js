@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
   },
   font: {
     fontSize: 20,
+    flex: 1,
+    paddingTop: 4
   },
   titleBox1: {
     flex: 3,
@@ -129,7 +131,7 @@ const ResourceCardHome = (props) => {
       <View className="card-wrapper" style={styles.wrapper}>
         <View className="header-section" style={styles.title}>
           <View className="block1" style={styles.titleBox1}>
-            <Text style={styles.font}>{props.item.name}</Text>
+            <Text style={styles.font} numberOfLines={1}>{props.item.name}</Text>
             <Text>{props.item.rating}</Text>
           </View>
           <View className="block2">
@@ -149,9 +151,9 @@ const ResourceCardHome = (props) => {
           className="description-of-services-section"
           style={styles.services}
         >
-          <Text style={{ padding: 5 }}>{props.item.description}</Text>
+          <Text numberOfLines={4} style={{ padding: 5, flex: 1 }}>{props.item.description}</Text>
         </View>
-        <TouchableOpacity style={{ padding: 5 }}>
+        <TouchableOpacity  style={{ padding: 5 }}>
           <Text>Show More</Text>
         </TouchableOpacity>
       </View>
