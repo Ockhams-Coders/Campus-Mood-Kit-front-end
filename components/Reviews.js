@@ -20,13 +20,26 @@ import Navbar from "./Navbar";
 import { TextInput } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({
+   
   centerScroll: {
-    flexDirection: "column",
+    flexGrow: 1,
     alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#ADF6D4",
     width: "100%",
-    height: "100%",
+    height: "140%",
+    flexDirection: "column",
+    alignItems: "flex-start",
+
+    
+  },
+  center: {
+
+    flex: 1,
+    alignItems: "center",
+    flexDirection: "column",
+    backgroundColor: "#ADF6D4",
+    width: "100%",
+    maxHeight: 600,
   },
 });
 
@@ -46,26 +59,15 @@ const Reviews = () => {
   })();
 
   return (
-    <View
-      style={{
-        zIndex: 0,
-        elevation: 0,
-        backgroundColor: "#ADF6D4",
-        height: "100%",
-      }}
-    >
-      <View style={{ zIndex: 2, elevation: 2, position: "absolute" }}>
+    <View style={{ backgroundColor:"#ADF6D4", display:"flex"}} showsHorizontalScrollIndicator={true} bounces={true}>
         <Navbar screen="Your Reviews" />
-      </View>
+        <View style={{height:10, width:"100%"}}></View>
+        
+    <ScrollView
+      contentContainerStyle={styles.centerScroll} showsHorizontalScrollIndicator={true} bounces={true}>
+     
       <View
-        style={{
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          backgroundColor: "#ADF6D4",
-          width: "100%",
-          height: "100%",
-        }}
+        style={styles.center}
       >
         <Picker
           selectedValue={selectedClinic}
@@ -155,6 +157,7 @@ const Reviews = () => {
           <Text>Submit Review</Text>
         </TouchableOpacity>
       </View>
+    </ScrollView>
     </View>
   );
 };
