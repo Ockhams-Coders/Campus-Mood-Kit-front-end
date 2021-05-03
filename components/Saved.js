@@ -4,14 +4,14 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 import { listClinics } from "../src/graphql/queries";
 
-import ResourceCardHome from "./ResourceCardHome";
+import ResourceCardSaved from "./ResourceCardSaved";
 
 const styles = StyleSheet.create({
   center: {
     flex: 1,
     alignItems: "center",
     paddingTop: "15%",
-    backgroundColor: "#99DDF9",
+    backgroundColor: "#F7C78E",
     width: "100%",
     maxHeight: 600,
   },
@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: "center",
     paddingTop: "15%",
-    backgroundColor: "#99DDF9",
+    backgroundColor: "#F7C78E",
     width: "100%",
-    height: "150%",
+    height: "100%",
   },
 });
 
@@ -60,7 +60,7 @@ const Saved = () => {
             }, false);
           })
           .map((item, idx) => {
-            return <ResourceCardHome key={idx} item={item}></ResourceCardHome>;
+            return <ResourceCardSaved key={idx} item={item}></ResourceCardSaved>;
           })}
       </View>
     </ScrollView>
