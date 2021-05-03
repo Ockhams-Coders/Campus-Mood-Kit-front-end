@@ -171,10 +171,16 @@ const Profile = ({ route }) => {
         }}
         onPress={async () => {
           try {
-            await Auth.signOut();
-            route.params.setLoggedIn(false);
+            let user = (await Auth.currentUserInfo()).username;
+
+            await API.graphql(
+              graphqlOperation(deleteResults, {
+                input: { id: user },
+              })
+            );
+
+            route.params.setSetupAccount(true);
           } catch (err) {
-            console.log("Profile err 2");
             console.log(err);
           }
         }}
