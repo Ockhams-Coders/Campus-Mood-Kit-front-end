@@ -177,6 +177,7 @@ export const createResults = /* GraphQL */ `
       q9
       q10
       q11
+      q12
       q13
       q14
       q15
@@ -207,6 +208,7 @@ export const updateResults = /* GraphQL */ `
       q9
       q10
       q11
+      q12
       q13
       q14
       q15
@@ -237,6 +239,7 @@ export const deleteResults = /* GraphQL */ `
       q9
       q10
       q11
+      q12
       q13
       q14
       q15
