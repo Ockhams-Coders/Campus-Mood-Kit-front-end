@@ -9,7 +9,7 @@ import { Button } from "native-base";
 
 const styles = StyleSheet.create({
     container: {
-        height: "35%",
+        height: 225,
         width: "80%",
         backgroundColor: "#ADF6D4"
     },
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-        height: "90%",
+        height: 200,
         backgroundColor: "#fff",
         borderRadius: 25,
         shadowOffset: {

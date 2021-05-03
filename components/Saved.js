@@ -5,23 +5,28 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { listClinics } from "../src/graphql/queries";
 
 import ResourceCardSaved from "./ResourceCardSaved";
+import Navbar from './Navbar';
 
 const styles = StyleSheet.create({
   center: {
     flex: 1,
     alignItems: "center",
-    paddingTop: "15%",
+    flexDirection: "column",
     backgroundColor: "#F7C78E",
     width: "100%",
     maxHeight: 600,
+    paddingTop: 40
   },
   centerScroll: {
     flexGrow: 1,
     alignItems: "center",
-    paddingTop: "15%",
     backgroundColor: "#F7C78E",
     width: "100%",
     height: "100%",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    zIndex: 1, 
+    elevation: 1,
   },
 });
 
@@ -53,6 +58,14 @@ const Saved = () => {
   }, []);
 
   return (
+    <ScrollView style={{zIndex: 0, elevation: 0, backgroundColor:"#F7C78E"}} showsHorizontalScrollIndicator={true}>
+
+      <View style={{zIndex: 2, elevation: 2, position: "absolute" }}>
+      <Navbar screen="Your Saved Resources"/>
+      </View>
+      <View style={{height:60, width:"100%", zIndex: 1, elevation: 1}}>
+
+      </View>
     <ScrollView contentContainerStyle={styles.centerScroll} bounces={true}>
       <View style={styles.center}>
         {clinics
@@ -67,6 +80,7 @@ const Saved = () => {
             );
           })}
       </View>
+    </ScrollView>
     </ScrollView>
   );
 };

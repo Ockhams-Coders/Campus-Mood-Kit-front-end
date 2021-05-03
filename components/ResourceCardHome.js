@@ -18,7 +18,7 @@ import { Button, Left } from "native-base";
 
 const styles = StyleSheet.create({
   container: {
-    height: "35%",
+    height: 225,
     width: "80%",
     backgroundColor: "#99DDF9",
   },
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    height: "90%",
+    height: 200,
     backgroundColor: "#fff",
     borderRadius: 25,
     shadowOffset: {
@@ -228,9 +228,11 @@ const ResourceCardHome = (props) => {
           className="description-of-services-section"
           style={styles.services}
         >
-          <Text numberOfLines={4} style={{ padding: 5, flex: 1 }}>
+          <Text numberOfLines={4} style={{ padding: 5, flex: 1, fontWeight:"300"}}>
             {props.item.description}
           </Text>
+
+      
         </View>
         <TouchableOpacity
           style={{ padding: 5 }}
