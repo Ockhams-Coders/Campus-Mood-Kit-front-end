@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Chart from './Chart'
+import Chart from "./Chart";
 import {
   View,
   Text,
@@ -93,6 +93,7 @@ const Profile = ({ route }) => {
           setDisgnosis(result.data.getDiagnosis);
         }
       } catch (err) {
+        console.log("Profile err 1");
         console.log(err);
       }
     })();
@@ -122,6 +123,7 @@ const Profile = ({ route }) => {
             await Auth.signOut();
             route.params.setLoggedIn(false);
           } catch (err) {
+            console.log("Profile err 2");
             console.log(err);
           }
         }}
@@ -142,13 +144,14 @@ const Profile = ({ route }) => {
 
             route.params.setSetupAccount(true);
           } catch (err) {
+            console.log("Profile err 3");
             console.log(err);
           }
         }}
       >
         <Text>Retake Quiz</Text>
       </TouchableOpacity>
-      <Chart/>
+      <Chart />
       {disgnosis && (
         <View style={{ marginTop: 20 }}>
           <Text>Depression: {degree[disgnosis.depression]}</Text>

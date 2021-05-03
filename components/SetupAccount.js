@@ -108,6 +108,7 @@ const Insurance = ({ navigation }) => {
 
       navigation.navigate("Question0");
     } catch (err) {
+      console.log("Setup err 1");
       console.log(err);
     }
   };
@@ -175,6 +176,7 @@ const Question = ({ navigation, route }) => {
         navigation.navigate(`Question${route.params.idx + 1}`);
       else route.params.setSetupAccount(false);
     } catch (err) {
+      console.log("Setup err 2");
       console.log(err);
     }
   };

@@ -34,6 +34,7 @@ const Saved = () => {
       try {
         setUser((await Auth.currentUserInfo()).username);
       } catch (err) {
+        console.log("Saved err 1");
         console.log(err);
       }
     })();
@@ -45,6 +46,7 @@ const Saved = () => {
         const data = await API.graphql(graphqlOperation(listClinics));
         setClinics(data.data.listClinics.items);
       } catch (err) {
+        console.log("Saved err 2");
         console.log(err);
       }
     })();
@@ -60,7 +62,9 @@ const Saved = () => {
             }, false);
           })
           .map((item, idx) => {
-            return <ResourceCardSaved key={idx} item={item}></ResourceCardSaved>;
+            return (
+              <ResourceCardSaved key={idx} item={item}></ResourceCardSaved>
+            );
           })}
       </View>
     </ScrollView>

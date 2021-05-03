@@ -49,6 +49,7 @@ const Main = ({ setLoggedIn }) => {
         if (result.data.getResults) setSetupAccount(false);
         setSplashScreen(false);
       } catch (err) {
+        console.log("Main err");
         console.log(err);
       }
     })();
