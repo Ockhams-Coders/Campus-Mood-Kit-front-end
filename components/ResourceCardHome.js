@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
     height: 225,
     width: "80%",
     backgroundColor: "#99DDF9",
+    zIndex: 1,
+    elevation: 1
   },
   wrapper: {
     alignItems: "center",
