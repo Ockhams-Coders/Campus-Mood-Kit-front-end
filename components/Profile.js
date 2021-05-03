@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button } from 'react-native';
 import Chart from './Chart'
 import {
   View,
@@ -151,7 +152,20 @@ const Profile = ({ route }) => {
         //</View>
       }
       <TouchableOpacity
-        style={{}}
+        style={{backgroundColor:"#f1f2f3", 
+        borderRadius:10, 
+        borderColor: "#513873",
+        shadowColor: "#513873",
+        shadowOffset: {
+          width: 2,
+          height: 2,    
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        padding: 5,
+        
+
+      }}
         onPress={async () => {
           try {
             let user = (await Auth.currentUserInfo()).username;
@@ -168,10 +182,14 @@ const Profile = ({ route }) => {
           }
         }}
       >
-        <Text style={{paddingBottom: "5%"}}>Retake Quiz</Text>
+        <Text style={{color:"#4747ff", fontSize:18
+          
+          }} >
+          Retake Quiz
+        </Text>
       </TouchableOpacity>
       </View>
-      <Text style={{alignSelf: "flex-start", paddingLeft:"10%", fontSize:20}}>Your Recommended Resources...</Text>
+      <Text style={{alignSelf: "flex-start", paddingLeft:"10%", paddingTop: "8%", fontSize:20}}>Your Recommended Resources...</Text>
     </SafeAreaView>
   
   );
