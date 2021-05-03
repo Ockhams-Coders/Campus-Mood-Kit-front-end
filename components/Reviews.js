@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
 const Reviews = () => {
   return (
-    <ScrollView style={{zIndex: 0, elevation: 0, backgroundColor:"#ADF6D4"}} showsHorizontalScrollIndicator={true}>
+    <View style={{zIndex: 0, elevation: 0, backgroundColor:"#ADF6D4"}} showsHorizontalScrollIndicator={true}>
 
     <View style={{zIndex: 2, elevation: 2, position: "absolute" }}>
     <Navbar screen="Your Reviews"/>
@@ -42,7 +42,7 @@ const Reviews = () => {
 
     
   </ScrollView>
-</ScrollView>
+</View>
   );
 };
 

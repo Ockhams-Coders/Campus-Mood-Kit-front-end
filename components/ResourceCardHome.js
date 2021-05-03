@@ -8,7 +8,7 @@ import {
   Modal,
 } from "react-native";
 import { Auth, API, graphqlOperation } from "aws-amplify";
-
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { updateClinic } from "../src/graphql/mutations";
 import { getClinic, listReviews } from "../src/graphql/queries";
 
@@ -199,34 +199,66 @@ const ResourceCardHome = (props) => {
               display: "flex",
               borderRadius: 50,
             }}
+            
           >
+            <View style={{
+              width: "90%",
+              height: 40,
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              position: "absolute",
+              paddingTop: 10
+              
+            }}>
+            <TouchableOpacity
+            onPress={() => setModalVisible(false)}>
+            <FontAwesome
+              name="times"
+              color="black"
+              size={30}
+
+            />
+            </TouchableOpacity>
+            </View>
+            <Text style={{
+              fontSize: 20,
+              fontWeight: '500',
+              width: "80%",
+              paddingTop: "10%"
+
+            }}>{props.item.name}</Text>
             <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "500",
-                flex: 0,
-              }}
-            >
-              {props.item.name}
-            </Text>
-            <Text
-              style={{
-                flex: 2,
-                alignSelf: "flex-start",
-                paddingLeft: 40,
-              }}
-            >
-              {" "}
-              Rating {props.item.rating}
-            </Text>
-            <Text
-              style={{
-                flex: 10,
-                width: "80%",
-              }}
-            >
-              {props.item.description}
-            </Text>
+            style={{
+              alignSelf: "flex-start",
+              paddingLeft: "8%",
+              fontSize: 18,
+              paddingBottom: 10,
+
+            }}> Rating {props.item.rating}</Text>
+            <View style={{
+              width: "85%",
+              padding: 10,
+              fontSize: 15,
+              fontWeight: "300",
+              borderRadius: 15,
+              borderColor: "#4DBEE7",
+              borderWidth: 2,
+              shadowOffset: {
+                width: 2,
+                height: 2,
+              },
+              shadowOpacity: 0.1,
+              shadowRadius: 2,
+              shadowColor: "black",
+              display: "flex",
+              alignContent: "center"
+
+            }}>
+            <Text style={{
+            }}
+            >{props.item.description}</Text>
+            </View>
             {reviews.length > 0 && (
               <View>
                 {reviews.map((review, idx) => {
@@ -237,9 +269,7 @@ const ResourceCardHome = (props) => {
                 })}
               </View>
             )}
-            <TouchableOpacity onPress={() => setModalVisible(false)} style={{}}>
-              <Text>Hide Card</Text>
-            </TouchableOpacity>
+          
           </View>
         </View>
       </Modal>

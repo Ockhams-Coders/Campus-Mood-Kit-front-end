@@ -57,7 +57,7 @@ const Saved = () => {
   }, []);
 
   return (
-    <ScrollView style={{backgroundColor:"#F7C78E"}} showsHorizontalScrollIndicator={true} bounces={true}>
+    <View style={{backgroundColor:"#F7C78E"}} showsHorizontalScrollIndicator={true} bounces={true}>
 
       <View style={{zIndex: 2, elevation: 2, position: "absolute" }}>
       <Navbar screen="Your Saved Resources"/>
@@ -80,7 +80,7 @@ const Saved = () => {
           })}
       </View>
     </ScrollView>
-    </ScrollView>
+    </View>
   );
 };
 
