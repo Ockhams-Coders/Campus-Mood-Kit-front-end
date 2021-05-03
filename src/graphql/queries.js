@@ -6,16 +6,6 @@ export const getClinic = /* GraphQL */ `
     getClinic(id: $id) {
       id
       name
-      reviews {
-        items {
-          id
-          rating
-          comment
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       likes
       rating
       description
@@ -34,9 +24,6 @@ export const listClinics = /* GraphQL */ `
       items {
         id
         name
-        reviews {
-          nextToken
-        }
         likes
         rating
         description
@@ -52,18 +39,7 @@ export const getReview = /* GraphQL */ `
     getReview(id: $id) {
       id
       rating
-      clinic {
-        id
-        name
-        reviews {
-          nextToken
-        }
-        likes
-        rating
-        description
-        createdAt
-        updatedAt
-      }
+      clinic
       comment
       createdAt
       updatedAt
@@ -80,15 +56,7 @@ export const listReviews = /* GraphQL */ `
       items {
         id
         rating
-        clinic {
-          id
-          name
-          likes
-          rating
-          description
-          createdAt
-          updatedAt
-        }
+        clinic
         comment
         createdAt
         updatedAt

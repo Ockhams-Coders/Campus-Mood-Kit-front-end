@@ -9,16 +9,6 @@ export const createClinic = /* GraphQL */ `
     createClinic(input: $input, condition: $condition) {
       id
       name
-      reviews {
-        items {
-          id
-          rating
-          comment
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       likes
       rating
       description
@@ -35,16 +25,6 @@ export const updateClinic = /* GraphQL */ `
     updateClinic(input: $input, condition: $condition) {
       id
       name
-      reviews {
-        items {
-          id
-          rating
-          comment
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       likes
       rating
       description
@@ -61,16 +41,6 @@ export const deleteClinic = /* GraphQL */ `
     deleteClinic(input: $input, condition: $condition) {
       id
       name
-      reviews {
-        items {
-          id
-          rating
-          comment
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       likes
       rating
       description
@@ -87,18 +57,7 @@ export const createReview = /* GraphQL */ `
     createReview(input: $input, condition: $condition) {
       id
       rating
-      clinic {
-        id
-        name
-        reviews {
-          nextToken
-        }
-        likes
-        rating
-        description
-        createdAt
-        updatedAt
-      }
+      clinic
       comment
       createdAt
       updatedAt
@@ -113,18 +72,7 @@ export const updateReview = /* GraphQL */ `
     updateReview(input: $input, condition: $condition) {
       id
       rating
-      clinic {
-        id
-        name
-        reviews {
-          nextToken
-        }
-        likes
-        rating
-        description
-        createdAt
-        updatedAt
-      }
+      clinic
       comment
       createdAt
       updatedAt
@@ -139,18 +87,7 @@ export const deleteReview = /* GraphQL */ `
     deleteReview(input: $input, condition: $condition) {
       id
       rating
-      clinic {
-        id
-        name
-        reviews {
-          nextToken
-        }
-        likes
-        rating
-        description
-        createdAt
-        updatedAt
-      }
+      clinic
       comment
       createdAt
       updatedAt

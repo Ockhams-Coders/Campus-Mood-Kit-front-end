@@ -1,10 +1,10 @@
 {
-  "AppSyncApiName": "cmkapi",
+  "AppSyncApiName": "cmkapiv3",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
-      "authcampusmoodkitamplify408a8040",
+      "authcmkv3cf71e3ed",
       "Outputs.UserPoolId"
     ]
   }

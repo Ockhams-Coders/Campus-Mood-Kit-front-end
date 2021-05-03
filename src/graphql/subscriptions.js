@@ -6,16 +6,6 @@ export const onCreateClinic = /* GraphQL */ `
     onCreateClinic {
       id
       name
-      reviews {
-        items {
-          id
-          rating
-          comment
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       likes
       rating
       description
@@ -29,16 +19,6 @@ export const onUpdateClinic = /* GraphQL */ `
     onUpdateClinic {
       id
       name
-      reviews {
-        items {
-          id
-          rating
-          comment
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       likes
       rating
       description
@@ -52,16 +32,6 @@ export const onDeleteClinic = /* GraphQL */ `
     onDeleteClinic {
       id
       name
-      reviews {
-        items {
-          id
-          rating
-          comment
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       likes
       rating
       description
@@ -75,18 +45,7 @@ export const onCreateReview = /* GraphQL */ `
     onCreateReview {
       id
       rating
-      clinic {
-        id
-        name
-        reviews {
-          nextToken
-        }
-        likes
-        rating
-        description
-        createdAt
-        updatedAt
-      }
+      clinic
       comment
       createdAt
       updatedAt
@@ -98,18 +57,7 @@ export const onUpdateReview = /* GraphQL */ `
     onUpdateReview {
       id
       rating
-      clinic {
-        id
-        name
-        reviews {
-          nextToken
-        }
-        likes
-        rating
-        description
-        createdAt
-        updatedAt
-      }
+      clinic
       comment
       createdAt
       updatedAt
@@ -121,18 +69,7 @@ export const onDeleteReview = /* GraphQL */ `
     onDeleteReview {
       id
       rating
-      clinic {
-        id
-        name
-        reviews {
-          nextToken
-        }
-        likes
-        rating
-        description
-        createdAt
-        updatedAt
-      }
+      clinic
       comment
       createdAt
       updatedAt

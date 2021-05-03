@@ -1,6 +1,6 @@
 {
   "auth": {
-    "campusmoodkitamplify408a8040": {
+    "cmkv3cf71e3ed": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -8,7 +8,7 @@
     }
   },
   "api": {
-    "cmkapi": {
+    "cmkapiv3": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -16,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authcampusmoodkitamplify408a8040"
+              "userPoolId": "authcmkv3cf71e3ed"
             }
           },
           "additionalAuthenticationProviders": []

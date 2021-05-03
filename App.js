@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 import Amplify, { Auth } from "aws-amplify";
-import config from "./aws-exports";
+import config from "./src/aws-exports";
 Amplify.configure(config);
 
 import { NavigationContainer } from "@react-navigation/native";

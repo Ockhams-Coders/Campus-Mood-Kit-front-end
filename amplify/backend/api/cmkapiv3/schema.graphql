@@ -1,7 +1,6 @@
 type Clinic @model {
   id: ID!
   name: String!
-  reviews: [Review] @connection
   likes: [String]
   rating: Float!
   description: String
@@ -10,7 +9,7 @@ type Clinic @model {
 type Review @model {
   id: ID!
   rating: Float!
-  clinic: Clinic! @connection
+  clinic: ID!
   comment: String
 }
 
