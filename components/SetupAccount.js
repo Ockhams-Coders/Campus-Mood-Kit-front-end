@@ -56,21 +56,61 @@ const QUESTIONS = [
 const Init = ({ navigation }) => {
   return (
     <View style={styles.center}>
-      <Text>Hello</Text>
-      <Text>To begin lets set up a basic profile.</Text>
-      <Text>This profile will be confidential and only available to you.</Text>
-      <Text>Press the arrow to continue</Text>
-      <TouchableOpacity
+      <View style={{
+        display:"flex",
+        flexDirection: "column",
+        width: "80%",
+        height:"90%",
+        alignContent:"center",
+        justifyContent:"center"
+      }}>
+      
+      
+      <Text
+      style={{
+        alignSelf: "center",
+        fontSize: 25,
+        paddingBottom: 10
+      }}>Hello</Text>
+      <Text
+      style={{
+        alignSelf: "center",
+        fontSize: 15,
+        paddingBottom: 20
+      }}>To begin lets set up a basic profile.</Text>
+      <Text
+      style={{
+        alignSelf: "center",
+        fontSize: 15,
+      }}>This profile will be confidential and only </Text>
+      <Text style={{
+        alignSelf: "center",
+        fontSize: 15,
+        paddingBottom: 20
+      }}>available to you.</Text>
+      <Text
+      style={{
+        alignSelf: "center",
+        fontSize: 15,
+        paddingBottom: 20
+      }}>Press the arrow to continue</Text>
+      <TouchableOpacity style={{
+        alignSelf: "center"
+      }}
         onPress={() => {
           navigation.navigate("Insurance");
         }}
+        
       >
+        
         <MaterialCommunityIcons
           name="arrow-right"
           size={50}
           style={{ marginRight: 10 }}
         />
       </TouchableOpacity>
+     
+      </View>
     </View>
   );
 };
@@ -115,22 +155,43 @@ const Insurance = ({ navigation }) => {
 
   return (
     <View style={styles.center}>
-      <Text>Do you have insurance? </Text>
-
-      <RadioButtonRN
+     
+      <View style={{
+        display:"flex",
+        flexDirection: "column",
+        width: "80%",
+        height:"90%",
+        alignContent:"center",
+        justifyContent:"center"
+      }}>
+         <Text
+         style={{
+          alignSelf: "center",
+          fontSize: 18,
+          paddingBottom: 20
+        }}>Do you have insurance? </Text>
+      <RadioButtonRN 
+        style={{
+        alignSelf: "center",
+        paddingBottom: 30
+      }}
         data={data}
         selectedBtn={(e) => {
           setInsured(e.label === "yes");
         }}
         boxStyle={{ width: 150 }}
       />
-      <TouchableOpacity onPress={() => goToQuestions()}>
+      <TouchableOpacity onPress={() => goToQuestions()}
+      style={{
+        alignSelf: "center"
+      }}>
         <MaterialCommunityIcons
           name="arrow-right"
           size={50}
           style={{ marginRight: 10 }}
         />
       </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -183,22 +244,42 @@ const Question = ({ navigation, route }) => {
 
   return (
     <View style={styles.center}>
-      <Text>{route.params.question}</Text>
-      <Text>{route.params.idx}</Text>
+      <View style={{
+        display:"flex",
+        flexDirection: "column",
+        width: "80%",
+        height:"90%",
+        alignContent:"center",
+        justifyContent:"center"
+      }}>
+      <Text style={{
+          alignSelf: "center",
+          fontSize: 18,
+          paddingBottom: 20
+        }}>{route.params.question}</Text>
+      
       <RadioButtonRN
+        style={{
+        alignSelf: "center",
+        paddingBottom: 30
+      }}
         data={data}
         selectedBtn={(e) => {
           setVal(e.value);
         }}
         boxStyle={{ width: 150 }}
       />
-      <TouchableOpacity onPress={() => nextQuestions()}>
+      <TouchableOpacity onPress={() => nextQuestions()}
+      style={{
+        alignSelf:"center"
+      }}>
         <MaterialCommunityIcons
           name="arrow-right"
           size={50}
           style={{ marginRight: 10 }}
         />
       </TouchableOpacity>
+      </View>
     </View>
   );
 };
