@@ -8,7 +8,9 @@ import {
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-import { Auth } from "aws-amplify";
+import { Auth, API, graphqlOperation } from "aws-amplify";
+import { deleteResults } from "../src/graphql/mutations";
+
 //align items and set background
 const styles = StyleSheet.create({
   center: {
@@ -87,6 +89,26 @@ const Profile = ({ route }) => {
         }}
       >
         <Text>Logout</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{}}
+        onPress={async () => {
+          try {
+            let user = (await Auth.currentUserInfo()).username;
+
+            await API.graphql(
+              graphqlOperation(deleteResults, {
+                input: { id: user },
+              })
+            );
+
+            route.params.setSetupAccount(true);
+          } catch (err) {
+            console.log(err);
+          }
+        }}
+      >
+        <Text>Retake Quiz</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

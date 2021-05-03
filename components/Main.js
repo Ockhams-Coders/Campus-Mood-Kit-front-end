@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import { API, graphqlOperation, Auth } from "aws-amplify";
 import { getResults } from "../src/graphql/queries";
@@ -20,6 +20,17 @@ import Reviews from "./Reviews";
 import SOS from "./SOS";
 import Saved from "./Saved";
 import Profile from "./Profile";
+
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    alignItems: "center",
+    paddingTop: "15%",
+    backgroundColor: "#99DDF9",
+    width: "100%",
+    height: "100%",
+  },
+});
 
 const Main = ({ setLoggedIn }) => {
   console.log("Test", setLoggedIn);
@@ -45,7 +56,7 @@ const Main = ({ setLoggedIn }) => {
 
   if (splashScreen) {
     return (
-      <View>
+      <View style={styles.center}>
         <Text>Splash Screen</Text>
       </View>
     );
@@ -115,7 +126,7 @@ const Main = ({ setLoggedIn }) => {
               />
             ),
           }}
-          initialParams={{ setLoggedIn }}
+          initialParams={{ setLoggedIn, setSetupAccount }}
         />
       </Tabs.Navigator>
     </NavigationContainer>
