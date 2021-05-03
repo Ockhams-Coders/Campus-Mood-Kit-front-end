@@ -34,10 +34,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 20,
+    
   },
   //name text options
   nameText: {
     fontSize: 25,
+    paddingBottom: "5%",
   },
 });
 //greeting user determination function
@@ -74,6 +76,8 @@ const Profile = ({ route }) => {
           graphqlOperation(getDiagnosis, { id: userSync.username })
         );
 
+        
+        
         if (result.data.getDiagnosis == null) {
           let input = {
             id: userSync.username,
@@ -100,9 +104,24 @@ const Profile = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.center}>
-      <View style={{ width: "80%", margin: 10 }}>
-        <TouchableOpacity style={{ alignSelf: "flex-end" }}>
-          <Text>Edit Profile</Text>
+      <View style={{ width: "80%", margin: 10, flexDirection: "row"}}>
+      <Text style={{flex:1}}>Edit Profile</Text>
+        <TouchableOpacity style={{  }}>
+        
+          
+          <TouchableOpacity
+            style={{}}
+            onPress={async () => {
+              try {
+                await Auth.signOut();
+                route.params.setLoggedIn(false);
+              } catch (err) {
+                console.log(err);
+              }
+            }}
+      >
+        <Text>Logout</Text>
+      </TouchableOpacity>
         </TouchableOpacity>
       </View>
       <View style={styles.profile}>
@@ -111,23 +130,26 @@ const Profile = ({ route }) => {
           color="#000"
           size={styles.profile.height * 0.9}
         />
+        
       </View>
+      
       <Text style={styles.nameText}>
         Good {greeting} {user.attributes.name}
       </Text>
-      <TouchableOpacity
-        style={{}}
-        onPress={async () => {
-          try {
-            await Auth.signOut();
-            route.params.setLoggedIn(false);
-          } catch (err) {
-            console.log(err);
-          }
-        }}
-      >
-        <Text>Logout</Text>
-      </TouchableOpacity>
+      
+      
+      <View style={{alignItems: "center", display: "flex", justifyContent:"center", flexDirection:"column"}}>
+      <Chart/>
+      {//disgnosis && (
+        //<View style={{ marginTop: 20 }}>
+          //<Text>Depression: {degree[disgnosis.depression]}</Text>
+          //<Text>Suicidal: {degree[disgnosis.suicidal]}</Text>
+          //<Text>Anxiety: {degree[disgnosis.anxiety]}</Text>
+          //<Text>OCD: {degree[disgnosis.OCD]}</Text>
+          //<Text>Eating disorder: {degree[disgnosis.eating]}</Text>
+          //<Text>ADHD: {degree[disgnosis.ADHD]}</Text>
+        //</View>
+      }
       <TouchableOpacity
         style={{}}
         onPress={async () => {
@@ -146,20 +168,12 @@ const Profile = ({ route }) => {
           }
         }}
       >
-        <Text>Retake Quiz</Text>
+        <Text style={{paddingBottom: "5%"}}>Retake Quiz</Text>
       </TouchableOpacity>
-      <Chart/>
-      {disgnosis && (
-        <View style={{ marginTop: 20 }}>
-          <Text>Depression: {degree[disgnosis.depression]}</Text>
-          <Text>Suicidal: {degree[disgnosis.suicidal]}</Text>
-          <Text>Anxiety: {degree[disgnosis.anxiety]}</Text>
-          <Text>OCD: {degree[disgnosis.OCD]}</Text>
-          <Text>Eating disorder: {degree[disgnosis.eating]}</Text>
-          <Text>ADHD: {degree[disgnosis.ADHD]}</Text>
-        </View>
-      )}
+      </View>
+      <Text style={{alignSelf: "flex-start", paddingLeft:"10%", fontSize:20}}>Your Recommended Resources...</Text>
     </SafeAreaView>
+  
   );
 };
 
