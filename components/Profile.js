@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Chart from './Chart'
 import {
   View,
   Text,
@@ -147,7 +148,7 @@ const Profile = ({ route }) => {
       >
         <Text>Retake Quiz</Text>
       </TouchableOpacity>
-
+      <Chart/>
       {disgnosis && (
         <View style={{ marginTop: 20 }}>
           <Text>Depression: {degree[disgnosis.depression]}</Text>
