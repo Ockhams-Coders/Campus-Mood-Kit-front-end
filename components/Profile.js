@@ -133,7 +133,29 @@ const Profile = ({ route }) => {
         Good {greeting} {user.attributes.name}
       </Text>
 
-      <TouchableOpacity
+      
+
+      <View
+        style={{
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Chart />
+        {
+          //disgnosis && (
+          //<View style={{ marginTop: 20 }}>
+          //<Text>Depression: {degree[disgnosis.depression]}</Text>
+          //<Text>Suicidal: {degree[disgnosis.suicidal]}</Text>
+          //<Text>Anxiety: {degree[disgnosis.anxiety]}</Text>
+          //<Text>OCD: {degree[disgnosis.OCD]}</Text>
+          //<Text>Eating disorder: {degree[disgnosis.eating]}</Text>
+          //<Text>ADHD: {degree[disgnosis.ADHD]}</Text>
+          //</View>
+        }
+        <TouchableOpacity
         style={{
           backgroundColor: "#f1f2f3",
           borderRadius: 10,
@@ -159,48 +181,6 @@ const Profile = ({ route }) => {
       >
         <Text style={{ color: "#4747ff", fontSize: 18 }}>Retake Quiz</Text>
       </TouchableOpacity>
-
-      <View
-        style={{
-          alignItems: "center",
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
-      >
-        <Chart />
-        {
-          //disgnosis && (
-          //<View style={{ marginTop: 20 }}>
-          //<Text>Depression: {degree[disgnosis.depression]}</Text>
-          //<Text>Suicidal: {degree[disgnosis.suicidal]}</Text>
-          //<Text>Anxiety: {degree[disgnosis.anxiety]}</Text>
-          //<Text>OCD: {degree[disgnosis.OCD]}</Text>
-          //<Text>Eating disorder: {degree[disgnosis.eating]}</Text>
-          //<Text>ADHD: {degree[disgnosis.ADHD]}</Text>
-          //</View>
-        }
-        <TouchableOpacity
-          style={{}}
-          onPress={async () => {
-            try {
-              let user = (await Auth.currentUserInfo()).username;
-
-              await API.graphql(
-                graphqlOperation(deleteResults, {
-                  input: { id: user },
-                })
-              );
-
-              route.params.setSetupAccount(true);
-            } catch (err) {
-              console.log("Profile err 3");
-              console.log(err);
-            }
-          }}
-        >
-          <Text style={{ paddingBottom: "5%" }}>Retake Quiz</Text>
-        </TouchableOpacity>
       </View>
       <Text
         style={{
