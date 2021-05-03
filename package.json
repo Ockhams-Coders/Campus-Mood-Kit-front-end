@@ -9,6 +9,7 @@
     "aws-amplify-react-native": "^4.3.2",
     "expo": "~40.0.0",
     "native-base": "^2.15.2",
+    "radio-buttons-react-native": "^1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",

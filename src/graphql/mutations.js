@@ -145,3 +145,75 @@ export const deleteReview = /* GraphQL */ `
     }
   }
 `;
+export const createResults = /* GraphQL */ `
+  mutation CreateResults(
+    $input: CreateResultsInput!
+    $condition: ModelResultsConditionInput
+  ) {
+    createResults(input: $input, condition: $condition) {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateResults = /* GraphQL */ `
+  mutation UpdateResults(
+    $input: UpdateResultsInput!
+    $condition: ModelResultsConditionInput
+  ) {
+    updateResults(input: $input, condition: $condition) {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteResults = /* GraphQL */ `
+  mutation DeleteResults(
+    $input: DeleteResultsInput!
+    $condition: ModelResultsConditionInput
+  ) {
+    deleteResults(input: $input, condition: $condition) {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      createdAt
+      updatedAt
+    }
+  }
+`;

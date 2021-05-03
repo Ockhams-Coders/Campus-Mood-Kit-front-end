@@ -89,3 +89,52 @@ export const listReviews = /* GraphQL */ `
     }
   }
 `;
+export const getResults = /* GraphQL */ `
+  query GetResults($id: ID!) {
+    getResults(id: $id) {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listResultss = /* GraphQL */ `
+  query ListResultss(
+    $filter: ModelResultsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listResultss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        insurance
+        q0
+        q1
+        q2
+        q3
+        q4
+        q5
+        q6
+        q7
+        q8
+        q9
+        q10
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
