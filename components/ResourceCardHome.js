@@ -6,11 +6,13 @@ import {
   Image,
   TouchableOpacity,
   Modal,
+  ScrollView,
 } from "react-native";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { updateClinic } from "../src/graphql/mutations";
 import { getClinic, listReviews } from "../src/graphql/queries";
+import { Table, Row, Rows } from "react-native-table-component";
 
 import { shouldUseActivityState } from "react-native-screens";
 import { Platform } from "react-native";
@@ -82,17 +84,11 @@ const ResourceCardHome = (props) => {
 
   const fetchReviews = async () => {
     try {
-      console.log("Run");
-
       let res = await API.graphql(graphqlOperation(listReviews));
 
-      console.log(res);
-
-      res = res.data.listReviews.filter((review) => {
-        return review.clinic.id == props.item.id;
+      res = res.data.listReviews.items.filter((review) => {
+        return review.clinic == props.item.id;
       });
-
-      console.log(res);
 
       setReviews(res || []);
     } catch (err) {
@@ -199,77 +195,100 @@ const ResourceCardHome = (props) => {
               display: "flex",
               borderRadius: 50,
             }}
-            
           >
-            <View style={{
-              width: "90%",
-              height: 40,
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-end",
-              position: "absolute",
-              paddingTop: 10
-              
-            }}>
-            <TouchableOpacity
-            onPress={() => setModalVisible(false)}>
-            <FontAwesome
-              name="times"
-              color="black"
-              size={30}
-
-            />
-            </TouchableOpacity>
+            <View
+              style={{
+                width: "90%",
+                height: 40,
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                position: "absolute",
+                paddingTop: 10,
+              }}
+            >
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <FontAwesome name="times" color="black" size={30} />
+              </TouchableOpacity>
             </View>
-            <Text style={{
-              fontSize: 20,
-              fontWeight: '500',
-              width: "80%",
-              paddingTop: "10%"
-
-            }}>{props.item.name}</Text>
             <Text
-            style={{
-              alignSelf: "flex-start",
-              paddingLeft: "8%",
-              fontSize: 18,
-              paddingBottom: 10,
-
-            }}> Rating {props.item.rating}</Text>
-            <View style={{
-              width: "85%",
-              padding: 10,
-              fontSize: 15,
-              fontWeight: "300",
-              borderRadius: 15,
-              borderColor: "#4DBEE7",
-              borderWidth: 2,
-              shadowOffset: {
-                width: 2,
-                height: 2,
-              },
-              shadowOpacity: 0.1,
-              shadowRadius: 2,
-              shadowColor: "black",
-              display: "flex",
-              alignContent: "center"
-
-            }}>
-            <Text style={{
-            }}
-            >{props.item.description}</Text>
+              style={{
+                fontSize: 20,
+                fontWeight: "500",
+                width: "80%",
+                paddingTop: "10%",
+              }}
+            >
+              {props.item.name}
+            </Text>
+            <Text
+              style={{
+                alignSelf: "flex-start",
+                paddingLeft: "8%",
+                fontSize: 18,
+                paddingBottom: 10,
+              }}
+            >
+              {" "}
+              Rating {props.item.rating}
+            </Text>
+            <View
+              style={{
+                width: "85%",
+                padding: 10,
+                fontSize: 15,
+                fontWeight: "300",
+                borderRadius: 15,
+                borderColor: "#4DBEE7",
+                borderWidth: 2,
+                shadowOffset: {
+                  width: 2,
+                  height: 2,
+                },
+                shadowOpacity: 0.1,
+                shadowRadius: 2,
+                shadowColor: "black",
+                display: "flex",
+                alignContent: "center",
+              }}
+            >
+              <Text style={{}}>{props.item.description}</Text>
             </View>
             {reviews.length > 0 && (
-              <View>
-                {reviews.map((review, idx) => {
-                  <View key={idx}>
-                    <Text>{revie.rating}</Text>
-                    <Text>{review.comment}</Text>
-                  </View>;
-                })}
-              </View>
+              <ScrollView
+                style={{
+                  flex: 1,
+                  padding: 16,
+                  paddingTop: 30,
+                  width: "100%",
+                  height: 280,
+                  paddingBottom: 10,
+                }}
+              >
+                <Table
+                  borderStyle={{
+                    borderWidth: 2,
+                    borderColor: "#c8e1ff",
+                    width: 400,
+                    marginBottom: 20,
+                  }}
+                >
+                  <Row
+                    data={["Review", "Comment"]}
+                    style={{ height: 40, backgroundColor: "#f1f8ff" }}
+                    textStyle={{ margin: 6 }}
+                    widthArr={[70, 200]}
+                  />
+                  <Rows
+                    textStyle={{ margin: 6 }}
+                    widthArr={[70, 200]}
+                    data={reviews.map((review) => {
+                      return [`${review.rating}/5`, review.comment || ""];
+                    })}
+                  />
+                </Table>
+              </ScrollView>
             )}
-          
           </View>
         </View>
       </Modal>
