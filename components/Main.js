@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+
+import { API, graphqlOperation, Auth } from "aws-amplify";
+import { getResults } from "../src/graphql/queries";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -12,13 +15,56 @@ import Feather from "react-native-vector-icons/Feather";
 const Tabs = createBottomTabNavigator();
 
 import Home from "./Home";
+import SetupAccount from "./SetupAccount";
 import Reviews from "./Reviews";
 import SOS from "./SOS";
 import Saved from "./Saved";
 import Profile from "./Profile";
 
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    alignItems: "center",
+    paddingTop: "15%",
+    backgroundColor: "#99DDF9",
+    width: "100%",
+    height: "100%",
+  },
+});
+
 const Main = ({ setLoggedIn }) => {
   console.log("Test", setLoggedIn);
+
+  const [splashScreen, setSplashScreen] = useState(true);
+  const [setupAccount, setSetupAccount] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        let user = (await Auth.currentUserInfo()).username;
+        let result = await API.graphql(
+          graphqlOperation(getResults, { id: user })
+        );
+
+        if (result.data.getResults) setSetupAccount(false);
+        setSplashScreen(false);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
+  if (splashScreen) {
+    return (
+      <View style={styles.center}>
+        <Text>Splash Screen</Text>
+      </View>
+    );
+  }
+
+  if (setupAccount) {
+    return <SetupAccount setSetupAccount={setSetupAccount} />;
+  }
 
   return (
     <NavigationContainer>
@@ -80,7 +126,7 @@ const Main = ({ setLoggedIn }) => {
               />
             ),
           }}
-          initialParams={{ setLoggedIn }}
+          initialParams={{ setLoggedIn, setSetupAccount }}
         />
       </Tabs.Navigator>
     </NavigationContainer>

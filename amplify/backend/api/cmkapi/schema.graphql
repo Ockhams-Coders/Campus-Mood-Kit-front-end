@@ -1,19 +1,48 @@
-type Clinic @model @auth(rules: [{ allow: owner, queries: null }]) {
+type Clinic @model {
   id: ID!
   name: String!
-  address: Address
   reviews: [Review] @connection
+  likes: [String]
+  rating: Float!
+  description: String
 }
 
-type Address {
-  street: String!
-  zip: Int!
-  city: String!
-}
-
-type Review @model @auth(rules: [{ allow: owner, queries: null }]) {
+type Review @model {
   id: ID!
   rating: Float!
   clinic: Clinic! @connection
   comment: String
+}
+
+type Results @model {
+  id: ID!
+  insurance: Boolean
+  q0: Int
+  q1: Int
+  q2: Int
+  q3: Int
+  q4: Int
+  q5: Int
+  q6: Int
+  q7: Int
+  q8: Int
+  q9: Int
+  q10: Int
+  q11: Int
+  q12: Int
+  q13: Int
+  q14: Int
+  q15: Int
+  q16: Int
+  q17: Int
+}
+
+type Diagnosis @model {
+  id: ID!
+  depression: Int!
+  suicidal: Int!
+  anxiety: Int!
+  OCD: Int!
+  eating: Int!
+  ADHD: Int!
 }

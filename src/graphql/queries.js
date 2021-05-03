@@ -6,11 +6,6 @@ export const getClinic = /* GraphQL */ `
     getClinic(id: $id) {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -18,13 +13,14 @@ export const getClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
+      rating
+      description
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -38,17 +34,14 @@ export const listClinics = /* GraphQL */ `
       items {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
+        rating
+        description
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -62,22 +55,18 @@ export const getReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
+        rating
+        description
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -94,14 +83,115 @@ export const listReviews = /* GraphQL */ `
         clinic {
           id
           name
+          likes
+          rating
+          description
           createdAt
           updatedAt
-          owner
         }
         comment
         createdAt
         updatedAt
-        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getResults = /* GraphQL */ `
+  query GetResults($id: ID!) {
+    getResults(id: $id) {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      q11
+      q12
+      q13
+      q14
+      q15
+      q16
+      q17
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listResultss = /* GraphQL */ `
+  query ListResultss(
+    $filter: ModelResultsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listResultss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        insurance
+        q0
+        q1
+        q2
+        q3
+        q4
+        q5
+        q6
+        q7
+        q8
+        q9
+        q10
+        q11
+        q12
+        q13
+        q14
+        q15
+        q16
+        q17
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getDiagnosis = /* GraphQL */ `
+  query GetDiagnosis($id: ID!) {
+    getDiagnosis(id: $id) {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listDiagnosiss = /* GraphQL */ `
+  query ListDiagnosiss(
+    $filter: ModelDiagnosisFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDiagnosiss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        depression
+        suicidal
+        anxiety
+        OCD
+        eating
+        ADHD
+        createdAt
+        updatedAt
       }
       nextToken
     }

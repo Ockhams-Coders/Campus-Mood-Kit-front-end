@@ -6,11 +6,6 @@ export const onCreateClinic = /* GraphQL */ `
     onCreateClinic {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -18,13 +13,14 @@ export const onCreateClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
+      rating
+      description
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -33,11 +29,6 @@ export const onUpdateClinic = /* GraphQL */ `
     onUpdateClinic {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -45,13 +36,14 @@ export const onUpdateClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
+      rating
+      description
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -60,11 +52,6 @@ export const onDeleteClinic = /* GraphQL */ `
     onDeleteClinic {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -72,13 +59,14 @@ export const onDeleteClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
+      rating
+      description
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -90,22 +78,18 @@ export const onCreateReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
+        rating
+        description
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -117,22 +101,18 @@ export const onUpdateReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
+        rating
+        description
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -144,22 +124,147 @@ export const onDeleteReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
+        rating
+        description
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
+    }
+  }
+`;
+export const onCreateResults = /* GraphQL */ `
+  subscription OnCreateResults {
+    onCreateResults {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      q11
+      q12
+      q13
+      q14
+      q15
+      q16
+      q17
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateResults = /* GraphQL */ `
+  subscription OnUpdateResults {
+    onUpdateResults {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      q11
+      q12
+      q13
+      q14
+      q15
+      q16
+      q17
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteResults = /* GraphQL */ `
+  subscription OnDeleteResults {
+    onDeleteResults {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      q11
+      q12
+      q13
+      q14
+      q15
+      q16
+      q17
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateDiagnosis = /* GraphQL */ `
+  subscription OnCreateDiagnosis {
+    onCreateDiagnosis {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateDiagnosis = /* GraphQL */ `
+  subscription OnUpdateDiagnosis {
+    onUpdateDiagnosis {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteDiagnosis = /* GraphQL */ `
+  subscription OnDeleteDiagnosis {
+    onDeleteDiagnosis {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
     }
   }
 `;

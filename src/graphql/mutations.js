@@ -9,11 +9,6 @@ export const createClinic = /* GraphQL */ `
     createClinic(input: $input, condition: $condition) {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -21,13 +16,14 @@ export const createClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
+      rating
+      description
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -39,11 +35,6 @@ export const updateClinic = /* GraphQL */ `
     updateClinic(input: $input, condition: $condition) {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -51,13 +42,14 @@ export const updateClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
+      rating
+      description
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -69,11 +61,6 @@ export const deleteClinic = /* GraphQL */ `
     deleteClinic(input: $input, condition: $condition) {
       id
       name
-      address {
-        street
-        zip
-        city
-      }
       reviews {
         items {
           id
@@ -81,13 +68,14 @@ export const deleteClinic = /* GraphQL */ `
           comment
           createdAt
           updatedAt
-          owner
         }
         nextToken
       }
+      likes
+      rating
+      description
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -102,22 +90,18 @@ export const createReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
+        rating
+        description
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -132,22 +116,18 @@ export const updateReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
+        rating
+        description
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -162,22 +142,165 @@ export const deleteReview = /* GraphQL */ `
       clinic {
         id
         name
-        address {
-          street
-          zip
-          city
-        }
         reviews {
           nextToken
         }
+        likes
+        rating
+        description
         createdAt
         updatedAt
-        owner
       }
       comment
       createdAt
       updatedAt
-      owner
+    }
+  }
+`;
+export const createResults = /* GraphQL */ `
+  mutation CreateResults(
+    $input: CreateResultsInput!
+    $condition: ModelResultsConditionInput
+  ) {
+    createResults(input: $input, condition: $condition) {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      q11
+      q12
+      q13
+      q14
+      q15
+      q16
+      q17
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateResults = /* GraphQL */ `
+  mutation UpdateResults(
+    $input: UpdateResultsInput!
+    $condition: ModelResultsConditionInput
+  ) {
+    updateResults(input: $input, condition: $condition) {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      q11
+      q12
+      q13
+      q14
+      q15
+      q16
+      q17
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteResults = /* GraphQL */ `
+  mutation DeleteResults(
+    $input: DeleteResultsInput!
+    $condition: ModelResultsConditionInput
+  ) {
+    deleteResults(input: $input, condition: $condition) {
+      id
+      insurance
+      q0
+      q1
+      q2
+      q3
+      q4
+      q5
+      q6
+      q7
+      q8
+      q9
+      q10
+      q11
+      q12
+      q13
+      q14
+      q15
+      q16
+      q17
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDiagnosis = /* GraphQL */ `
+  mutation CreateDiagnosis(
+    $input: CreateDiagnosisInput!
+    $condition: ModelDiagnosisConditionInput
+  ) {
+    createDiagnosis(input: $input, condition: $condition) {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDiagnosis = /* GraphQL */ `
+  mutation UpdateDiagnosis(
+    $input: UpdateDiagnosisInput!
+    $condition: ModelDiagnosisConditionInput
+  ) {
+    updateDiagnosis(input: $input, condition: $condition) {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDiagnosis = /* GraphQL */ `
+  mutation DeleteDiagnosis(
+    $input: DeleteDiagnosisInput!
+    $condition: ModelDiagnosisConditionInput
+  ) {
+    deleteDiagnosis(input: $input, condition: $condition) {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
     }
   }
 `;
