@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     width: "80%",
     backgroundColor: "#99DDF9",
     zIndex: 1,
-    elevation: 1
+    elevation: 1,
   },
   wrapper: {
     alignItems: "center",
@@ -81,10 +81,24 @@ const ResourceCardHome = (props) => {
   const [reviews, setReviews] = useState([]);
 
   const fetchReviews = async () => {
-    setReviews(
-      (await API.graphql(graphqlOperation(listReviews, { id: props.item.id })))
-        .data.listReviews || []
-    );
+    try {
+      console.log("Run");
+
+      let res = await API.graphql(graphqlOperation(listReviews));
+
+      console.log(res);
+
+      res = res.data.listReviews.filter((review) => {
+        return review.clinic.id == props.item.id;
+      });
+
+      console.log(res);
+
+      setReviews(res || []);
+    } catch (err) {
+      console.log("Res 0");
+      console.log(err);
+    }
   };
 
   const handlePress = async () => {
@@ -153,7 +167,6 @@ const ResourceCardHome = (props) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
@@ -184,27 +197,36 @@ const ResourceCardHome = (props) => {
               padding: 15,
               alignItems: "center",
               display: "flex",
-              borderRadius: 50
+              borderRadius: 50,
             }}
           >
-            <Text style={{
-              fontSize: 20,
-              fontWeight: '500',
-              flex: 0
-
-            }}>{props.item.name}</Text>
             <Text
-            style={{
-              flex: 2,
-              alignSelf: "flex-start",
-              paddingLeft: 40
-            }}> Rating {props.item.rating}</Text>
+              style={{
+                fontSize: 20,
+                fontWeight: "500",
+                flex: 0,
+              }}
+            >
+              {props.item.name}
+            </Text>
             <Text
-            style={{
-              flex: 10,
-              width: "80%"
-
-            }}>{props.item.description}</Text>
+              style={{
+                flex: 2,
+                alignSelf: "flex-start",
+                paddingLeft: 40,
+              }}
+            >
+              {" "}
+              Rating {props.item.rating}
+            </Text>
+            <Text
+              style={{
+                flex: 10,
+                width: "80%",
+              }}
+            >
+              {props.item.description}
+            </Text>
             {reviews.length > 0 && (
               <View>
                 {reviews.map((review, idx) => {
@@ -216,8 +238,7 @@ const ResourceCardHome = (props) => {
               </View>
             )}
             <TouchableOpacity onPress={() => setModalVisible(false)} style={{}}>
-              <Text
-              >Hide Card</Text>
+              <Text>Hide Card</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -247,15 +268,19 @@ const ResourceCardHome = (props) => {
           className="description-of-services-section"
           style={styles.services}
         >
-          <Text numberOfLines={4} style={{ padding: 5, flex: 1, fontWeight:"300"}}>
+          <Text
+            numberOfLines={4}
+            style={{ padding: 5, flex: 1, fontWeight: "300" }}
+          >
             {props.item.description}
           </Text>
-
-      
         </View>
         <TouchableOpacity
           style={{ padding: 5 }}
-          onPress={() => setModalVisible(true)}
+          onPress={() => {
+            fetchReviews();
+            setModalVisible(true);
+          }}
         >
           <Text>Show More</Text>
         </TouchableOpacity>

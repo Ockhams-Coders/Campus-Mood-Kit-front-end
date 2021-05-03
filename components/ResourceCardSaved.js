@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     width: "80%",
     backgroundColor: "#F7C78E",
     zIndex: 1,
-    elevation: 1
+    elevation: 1,
   },
   wrapper: {
     alignItems: "center",
@@ -153,7 +153,6 @@ const ResourceCardSaved = (props) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
@@ -230,11 +229,12 @@ const ResourceCardSaved = (props) => {
           className="description-of-services-section"
           style={styles.services}
         >
-          <Text numberOfLines={4} style={{ padding: 5, flex: 1, fontWeight:"300"}}>
+          <Text
+            numberOfLines={4}
+            style={{ padding: 5, flex: 1, fontWeight: "300" }}
+          >
             {props.item.description}
           </Text>
-
-      
         </View>
         <TouchableOpacity
           style={{ padding: 5 }}
@@ -248,6 +248,3 @@ const ResourceCardSaved = (props) => {
 };
 
 export default ResourceCardSaved;
-
-
-
