@@ -20,6 +20,8 @@ export const createClinic = /* GraphQL */ `
         nextToken
       }
       likes
+      rating
+      description
       createdAt
       updatedAt
     }
@@ -44,6 +46,8 @@ export const updateClinic = /* GraphQL */ `
         nextToken
       }
       likes
+      rating
+      description
       createdAt
       updatedAt
     }
@@ -68,6 +72,8 @@ export const deleteClinic = /* GraphQL */ `
         nextToken
       }
       likes
+      rating
+      description
       createdAt
       updatedAt
     }
@@ -88,6 +94,8 @@ export const createReview = /* GraphQL */ `
           nextToken
         }
         likes
+        rating
+        description
         createdAt
         updatedAt
       }
@@ -112,6 +120,8 @@ export const updateReview = /* GraphQL */ `
           nextToken
         }
         likes
+        rating
+        description
         createdAt
         updatedAt
       }
@@ -136,6 +146,8 @@ export const deleteReview = /* GraphQL */ `
           nextToken
         }
         likes
+        rating
+        description
         createdAt
         updatedAt
       }

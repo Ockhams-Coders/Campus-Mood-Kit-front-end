@@ -124,13 +124,13 @@ const ResourceCardHome = (props) => {
     })();
   }, []);
 
-
   return (
     <View style={styles.container}>
       <View className="card-wrapper" style={styles.wrapper}>
         <View className="header-section" style={styles.title}>
           <View className="block1" style={styles.titleBox1}>
             <Text style={styles.font}>{props.item.name}</Text>
+            <Text>{props.item.rating}</Text>
           </View>
           <View className="block2">
             <TouchableOpacity onPress={handlePress}>
@@ -148,7 +148,12 @@ const ResourceCardHome = (props) => {
         <View
           className="description-of-services-section"
           style={styles.services}
-        ></View>
+        >
+          <Text style={{ padding: 5 }}>{props.item.description}</Text>
+        </View>
+        <TouchableOpacity style={{ padding: 5 }}>
+          <Text>Show More</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

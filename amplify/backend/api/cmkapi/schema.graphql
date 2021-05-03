@@ -3,6 +3,8 @@ type Clinic @model {
   name: String!
   reviews: [Review] @connection
   likes: [String]
+  rating: Float!
+  description: String
 }
 
 type Review @model {

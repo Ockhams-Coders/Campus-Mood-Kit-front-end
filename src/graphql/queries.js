@@ -17,6 +17,8 @@ export const getClinic = /* GraphQL */ `
         nextToken
       }
       likes
+      rating
+      description
       createdAt
       updatedAt
     }
@@ -36,6 +38,8 @@ export const listClinics = /* GraphQL */ `
           nextToken
         }
         likes
+        rating
+        description
         createdAt
         updatedAt
       }
@@ -55,6 +59,8 @@ export const getReview = /* GraphQL */ `
           nextToken
         }
         likes
+        rating
+        description
         createdAt
         updatedAt
       }
@@ -78,6 +84,8 @@ export const listReviews = /* GraphQL */ `
           id
           name
           likes
+          rating
+          description
           createdAt
           updatedAt
         }
