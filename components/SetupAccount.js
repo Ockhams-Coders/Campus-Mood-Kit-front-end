@@ -40,10 +40,17 @@ const QUESTIONS = [
   "Poor appetite or overeating",
   "Feeling bad about yourself or that you are a failure or have let yourself or your family down",
   "Trouble concentrating on things, such as reading the newspaper or watching television",
-  "Trouble concentrating on things, such as reading the newspaper or watching television",
-  "Moving or speaking so slowly that other people coulod have noticed. Or the opposite; being so fidgety or restless that you have beeen moving around a lot more than usual",
+  "Moving or speaking so slowly that other people couldn't have noticed. Or the opposite; being so fidgety or restless that you have beeen moving around a lot more than usual",
   "Thoughts that you would be better off dead or of hurting yourself in some way",
   "If you checked off any problem on this questionnairee so far, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people",
+  "Feeling nervous, anxious or on edge",
+  "Not being able to stop or control worrying",
+  "Worrying too much about different things",
+  "Trouble Relaxing",
+  "Being so restless that it is hard to sit still",
+  "Becoming easily annoyed or irritated ",
+  "Feeling afraid as if something awful might happen",
+  "If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
 ];
 
 const Init = ({ navigation }) => {
@@ -164,7 +171,7 @@ const Question = ({ navigation, route }) => {
         })
       );
 
-      if (route.params.idx < 10)
+      if (route.params.idx < 17)
         navigation.navigate(`Question${route.params.idx + 1}`);
       else route.params.setSetupAccount(false);
     } catch (err) {

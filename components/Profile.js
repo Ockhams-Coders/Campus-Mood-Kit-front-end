@@ -9,7 +9,12 @@ import {
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import { Auth, API, graphqlOperation } from "aws-amplify";
-import { deleteResults } from "../src/graphql/mutations";
+import {
+  deleteResults,
+  createDiagnosis,
+  updateDiagnosis,
+} from "../src/graphql/mutations";
+import { getDiagnosis } from "../src/graphql/queries";
 
 //align items and set background
 const styles = StyleSheet.create({
@@ -37,6 +42,7 @@ const styles = StyleSheet.create({
 //greeting user determination function
 const Profile = ({ route }) => {
   const [user, setUser] = useState({ attributes: { name: "" } });
+  const [disgnosis, setDisgnosis] = useState(null);
 
   const hourOfDay = new Date().getHours();
   const greeting =
@@ -50,10 +56,41 @@ const Profile = ({ route }) => {
       ? "Evening"
       : "Night";
 
+  const degree = [
+    "No Traces",
+    "Slight Traits",
+    "Medium Traits",
+    "Severe Traits",
+  ];
+
   useEffect(() => {
     (async () => {
       try {
-        setUser(await Auth.currentUserInfo());
+        let userSync = await Auth.currentUserInfo();
+        setUser(userSync);
+
+        let result = await API.graphql(
+          graphqlOperation(getDiagnosis, { id: userSync.username })
+        );
+
+        if (result.data.getDiagnosis == null) {
+          let input = {
+            id: userSync.username,
+            depression: Math.floor(degree.length * Math.pow(Math.random(), 2)),
+            suicidal: Math.floor(degree.length * Math.pow(Math.random(), 2)),
+            anxiety: Math.floor(degree.length * Math.pow(Math.random(), 2)),
+            OCD: Math.floor(degree.length * Math.pow(Math.random(), 2)),
+            eating: Math.floor(degree.length * Math.pow(Math.random(), 2)),
+            ADHD: Math.floor(degree.length * Math.pow(Math.random(), 2)),
+          };
+
+          result = await API.graphql(
+            graphqlOperation(createDiagnosis, { input })
+          );
+          setDisgnosis(result.data.createDiagnosis);
+        } else {
+          setDisgnosis(result.data.getDiagnosis);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -110,6 +147,17 @@ const Profile = ({ route }) => {
       >
         <Text>Retake Quiz</Text>
       </TouchableOpacity>
+
+      {disgnosis && (
+        <View style={{ marginTop: 20 }}>
+          <Text>Depression: {degree[disgnosis.depression]}</Text>
+          <Text>Suicidal: {degree[disgnosis.suicidal]}</Text>
+          <Text>Anxiety: {degree[disgnosis.anxiety]}</Text>
+          <Text>OCD: {degree[disgnosis.OCD]}</Text>
+          <Text>Eating disorder: {degree[disgnosis.eating]}</Text>
+          <Text>ADHD: {degree[disgnosis.ADHD]}</Text>
+        </View>
+      )}
     </SafeAreaView>
   );
 };

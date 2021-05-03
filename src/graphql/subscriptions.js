@@ -155,6 +155,12 @@ export const onCreateResults = /* GraphQL */ `
       q8
       q9
       q10
+      q11
+      q13
+      q14
+      q15
+      q16
+      q17
       createdAt
       updatedAt
     }
@@ -176,6 +182,12 @@ export const onUpdateResults = /* GraphQL */ `
       q8
       q9
       q10
+      q11
+      q13
+      q14
+      q15
+      q16
+      q17
       createdAt
       updatedAt
     }
@@ -197,6 +209,57 @@ export const onDeleteResults = /* GraphQL */ `
       q8
       q9
       q10
+      q11
+      q13
+      q14
+      q15
+      q16
+      q17
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateDiagnosis = /* GraphQL */ `
+  subscription OnCreateDiagnosis {
+    onCreateDiagnosis {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateDiagnosis = /* GraphQL */ `
+  subscription OnUpdateDiagnosis {
+    onUpdateDiagnosis {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteDiagnosis = /* GraphQL */ `
+  subscription OnDeleteDiagnosis {
+    onDeleteDiagnosis {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
       createdAt
       updatedAt
     }

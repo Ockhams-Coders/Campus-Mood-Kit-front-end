@@ -113,6 +113,12 @@ export const getResults = /* GraphQL */ `
       q8
       q9
       q10
+      q11
+      q13
+      q14
+      q15
+      q16
+      q17
       createdAt
       updatedAt
     }
@@ -139,6 +145,49 @@ export const listResultss = /* GraphQL */ `
         q8
         q9
         q10
+        q11
+        q13
+        q14
+        q15
+        q16
+        q17
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getDiagnosis = /* GraphQL */ `
+  query GetDiagnosis($id: ID!) {
+    getDiagnosis(id: $id) {
+      id
+      depression
+      suicidal
+      anxiety
+      OCD
+      eating
+      ADHD
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listDiagnosiss = /* GraphQL */ `
+  query ListDiagnosiss(
+    $filter: ModelDiagnosisFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDiagnosiss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        depression
+        suicidal
+        anxiety
+        OCD
+        eating
+        ADHD
         createdAt
         updatedAt
       }

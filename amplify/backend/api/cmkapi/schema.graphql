@@ -28,4 +28,20 @@ type Results @model {
   q8: Int
   q9: Int
   q10: Int
+  q11: Int
+  q13: Int
+  q14: Int
+  q15: Int
+  q16: Int
+  q17: Int
+}
+
+type Diagnosis @model {
+  id: ID!
+  depression: Int!
+  suicidal: Int!
+  anxiety: Int!
+  OCD: Int!
+  eating: Int!
+  ADHD: Int!
 }
