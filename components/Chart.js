@@ -14,7 +14,9 @@ const Chart = () => {
   
     return (
         <View>
-        <Text>Bezier Line Chart</Text>
+        <Text style={{alignSelf:"center", fontSize:20}}>
+            Your Quiz Results
+        </Text>
         <LineChart
           data={{
             labels: ["04/29", "04/30", "05/01", "05/02", "05/03", "05/04"],
@@ -41,7 +43,7 @@ const Chart = () => {
             backgroundGradientFrom: "#513873",
             backgroundGradientTo: "#ad88d1",
             decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(174, 230, 175, ${opacity})`,
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
               borderRadius: 16
@@ -49,7 +51,7 @@ const Chart = () => {
             propsForDots: {
                 r: "5",
                 strokeWidth: "4",
-                stroke: "#88d195"
+                stroke: "white"
             }
           }}
           bezier

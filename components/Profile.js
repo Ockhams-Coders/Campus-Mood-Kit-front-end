@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   //name text options
   nameText: {
     fontSize: 25,
+    paddingBottom: "5%",
   },
 });
 //greeting user determination function
@@ -101,9 +102,22 @@ const Profile = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.center}>
-      <View style={{ width: "80%", margin: 10 }}>
-        <TouchableOpacity style={{ alignSelf: "flex-end" }}>
-          <Text>Edit Profile</Text>
+      <View style={{ width: "80%", margin: 10, flexDirection: "row" }}>
+        <Text style={{ flex: 1 }}>Edit Profile</Text>
+        <TouchableOpacity style={{}}>
+          <TouchableOpacity
+            style={{}}
+            onPress={async () => {
+              try {
+                await Auth.signOut();
+                route.params.setLoggedIn(false);
+              } catch (err) {
+                console.log(err);
+              }
+            }}
+          >
+            <Text>Logout</Text>
+          </TouchableOpacity>
         </TouchableOpacity>
       </View>
       <View style={styles.profile}>
@@ -113,9 +127,11 @@ const Profile = ({ route }) => {
           size={styles.profile.height * 0.9}
         />
       </View>
+
       <Text style={styles.nameText}>
         Good {greeting} {user.attributes.name}
       </Text>
+
       <TouchableOpacity
         style={{}}
         onPress={async () => {
@@ -130,38 +146,54 @@ const Profile = ({ route }) => {
       >
         <Text>Logout</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={{}}
-        onPress={async () => {
-          try {
-            let user = (await Auth.currentUserInfo()).username;
 
-            await API.graphql(
-              graphqlOperation(deleteResults, {
-                input: { id: user },
-              })
-            );
-
-            route.params.setSetupAccount(true);
-          } catch (err) {
-            console.log("Profile err 3");
-            console.log(err);
-          }
+      <View
+        style={{
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
         }}
       >
-        <Text>Retake Quiz</Text>
-      </TouchableOpacity>
-      <Chart />
-      {disgnosis && (
-        <View style={{ marginTop: 20 }}>
-          <Text>Depression: {degree[disgnosis.depression]}</Text>
-          <Text>Suicidal: {degree[disgnosis.suicidal]}</Text>
-          <Text>Anxiety: {degree[disgnosis.anxiety]}</Text>
-          <Text>OCD: {degree[disgnosis.OCD]}</Text>
-          <Text>Eating disorder: {degree[disgnosis.eating]}</Text>
-          <Text>ADHD: {degree[disgnosis.ADHD]}</Text>
-        </View>
-      )}
+        <Chart />
+        {
+          //disgnosis && (
+          //<View style={{ marginTop: 20 }}>
+          //<Text>Depression: {degree[disgnosis.depression]}</Text>
+          //<Text>Suicidal: {degree[disgnosis.suicidal]}</Text>
+          //<Text>Anxiety: {degree[disgnosis.anxiety]}</Text>
+          //<Text>OCD: {degree[disgnosis.OCD]}</Text>
+          //<Text>Eating disorder: {degree[disgnosis.eating]}</Text>
+          //<Text>ADHD: {degree[disgnosis.ADHD]}</Text>
+          //</View>
+        }
+        <TouchableOpacity
+          style={{}}
+          onPress={async () => {
+            try {
+              let user = (await Auth.currentUserInfo()).username;
+
+              await API.graphql(
+                graphqlOperation(deleteResults, {
+                  input: { id: user },
+                })
+              );
+
+              route.params.setSetupAccount(true);
+            } catch (err) {
+              console.log("Profile err 3");
+              console.log(err);
+            }
+          }}
+        >
+          <Text style={{ paddingBottom: "5%" }}>Retake Quiz</Text>
+        </TouchableOpacity>
+      </View>
+      <Text
+        style={{ alignSelf: "flex-start", paddingLeft: "10%", fontSize: 20 }}
+      >
+        Your Recommended Resources...
+      </Text>
     </SafeAreaView>
   );
 };
