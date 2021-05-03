@@ -31,7 +31,6 @@ const Home = () => {
     (async () => {
       try {
         const data = await API.graphql(graphqlOperation(listClinics));
-        console.log(data);
         setClinics(data.data.listClinics.items);
       } catch (err) {
         console.log("Home error");

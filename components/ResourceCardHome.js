@@ -10,7 +10,7 @@ import {
 import { Auth, API, graphqlOperation } from "aws-amplify";
 
 import { updateClinic } from "../src/graphql/mutations";
-import { getClinic } from "../src/graphql/queries";
+import { getClinic, listReviews } from "../src/graphql/queries";
 
 import { shouldUseActivityState } from "react-native-screens";
 import { Platform } from "react-native";
@@ -76,6 +76,14 @@ const ResourceCardHome = (props) => {
   const [liked, setLiked] = useState(false);
   const [button, setButton] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+  const [reviews, setReviews] = useState([]);
+
+  const fetchReviews = async () => {
+    setReviews(
+      (await API.graphql(graphqlOperation(listReviews, { id: props.item.id })))
+        .data.listReviews || []
+    );
+  };
 
   const handlePress = async () => {
     try {
@@ -179,7 +187,16 @@ const ResourceCardHome = (props) => {
             <Text>{props.item.name}</Text>
             <Text>{props.item.rating}</Text>
             <Text>{props.item.description}</Text>
-            {/* <Text>{props.item.reviews || []}</Text> */}
+            {reviews.length > 0 && (
+              <View>
+                {reviews.map((review, idx) => {
+                  <View key={idx}>
+                    <Text>review.rating</Text>
+                    <Text>review.comment</Text>
+                  </View>;
+                })}
+              </View>
+            )}
             <TouchableOpacity onPress={() => setModalVisible(false)} style={{}}>
               <Text>Hide Card</Text>
             </TouchableOpacity>
